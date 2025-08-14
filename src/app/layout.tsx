@@ -9,8 +9,9 @@ const font = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Bagify",
-  description: "UIM Inventory & Equipment Manager.",
+  title: "NoBanker — Inventory & Equipment Manager",
+  description:
+    "Easily manage your Old School Runescape inventory and equipment with NoBanker.",
 };
 
 export default function RootLayout({

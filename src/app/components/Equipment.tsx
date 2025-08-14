@@ -76,7 +76,7 @@ export default function Equipment() {
 
   return (
     <div className="flex">
-      <div className="grid grid-cols-3 gap-2 place-items-center">
+      <div className="grid grid-cols-3 sm:gap-1 gap-0.5 place-items-center">
         {/* Row 1 */}
         <div className="col-span-3 flex justify-center">
           <Slot
@@ -158,7 +158,6 @@ export default function Equipment() {
         />
       </div>
 
-      {/* Zelfde Search als in Inventory */}
       <Search
         activeIndex={activeIndex}
         query={query}

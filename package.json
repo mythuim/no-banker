@@ -1,6 +1,10 @@
 {
-  "name": "bagify",
-  "version": "0.1.0",
+  "name": "no-banker",
+  "version": "0.2.0",
+  "author": {
+    "name": "Mythuim",
+    "email": "mythuim@proton.me"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",

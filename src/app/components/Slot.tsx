@@ -40,7 +40,7 @@ export default function Slot({ item, index, onClick, label }: SlotProps) {
         />
       ) : label ? (
         <span
-          className="text-[10px] text-center leading-tight"
+          className="text-[10px] text-center leading-tight font-bold"
           style={{ color: "var(--color-taupe)" }}
         >
           {label}

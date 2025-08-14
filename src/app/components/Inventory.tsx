@@ -64,7 +64,7 @@ export default function Inventory() {
 
   return (
     <div className="flex">
-      <div className="grid grid-cols-4 grid-rows-7 gap-1 place-items-center">
+      <div className="grid grid-cols-4 grid-rows-7 sm:gap-1 gap-0.5 place-items-center">
         {selectedItems.map((chosen, idx) => (
           <Slot key={idx} item={chosen} index={idx} onClick={openModal} />
         ))}
