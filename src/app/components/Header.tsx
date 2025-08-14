@@ -11,11 +11,7 @@ const Header = () => {
             className="-m-1.5 p-1.5 flex items-center text-white/50 hover:text-white transition-colors font-bold"
           >
             NoBanker
-            <img
-              alt="NoBanker"
-              src="/uim.ico"
-              className="h-8 w-auto not-dark:hidden"
-            />
+            <img alt="NoBanker" src="/uim.ico" className="h-8 w-auto" />
           </a>
         </div>
         <div className="flex flex-1 justify-end">
