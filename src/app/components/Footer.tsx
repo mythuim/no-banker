@@ -57,7 +57,7 @@ const Footer = () => {
           className="text-xs text-white/50 hover:text-white font-semibold transition-colors"
           href="/"
         >
-          NoBanker - Mythuim
+          Created by Mythuim
         </a>
         <div className="flex gap-x-3 items-center">
           {socials.map((item: any) => (
