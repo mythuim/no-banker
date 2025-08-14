@@ -7,7 +7,7 @@ import { Item } from "../types";
 
 const TOTAL_SLOTS = 28;
 
-export default function Grid() {
+export default function Inventory() {
   const [allItems, setAllItems] = useState<Item[]>([]);
   const [selectedItems, setSelectedItems] = useState<(Item | null)[]>(
     Array(TOTAL_SLOTS).fill(null)
