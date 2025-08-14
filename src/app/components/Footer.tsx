@@ -58,7 +58,7 @@ const Footer = () => {
           href="https://buymeacoffee.com/mythuim"
           target="_blank"
         >
-          Buy Me a Coffee ☕
+          Buy Me a Coffee
         </a>
         <div className="flex gap-x-3 items-center">
           {socials.map((item: any) => (
