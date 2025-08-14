@@ -34,7 +34,6 @@ export default function Search({
       role="dialog"
       aria-modal="true"
     >
-      {/* Achtergrond overlay */}
       <div
         className="absolute inset-0"
         style={{ backgroundColor: "rgba(27,22,18,0.8)" }}
@@ -49,7 +48,6 @@ export default function Search({
           color: "var(--color-taupe)",
         }}
       >
-        {/* Header */}
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-base sm:text-lg font-semibold text-white">
             Select Item
@@ -70,7 +68,6 @@ export default function Search({
           </button>
         </div>
 
-        {/* Input */}
         <input
           type="text"
           value={query}
@@ -85,7 +82,6 @@ export default function Search({
           }}
         />
 
-        {/* Content */}
         {loading ? (
           <p className="text-sm" style={{ color: "var(--color-taupe)" }}>
             Loading…
@@ -138,7 +134,6 @@ export default function Search({
           </p>
         )}
 
-        {/* Footer buttons */}
         <div className="mt-4 flex justify-between">
           {currentItem && (
             <button

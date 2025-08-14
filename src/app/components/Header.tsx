@@ -1,4 +1,4 @@
-export default function Header() {
+const Header = () => {
   return (
     <header className="py-2">
       <nav
@@ -27,4 +27,6 @@ export default function Header() {
       </nav>
     </header>
   );
-}
+};
+
+export default Header;

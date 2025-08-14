@@ -19,7 +19,7 @@ const EQUIPMENT_SLOTS = [
   "Ring",
 ];
 
-export default function Equipment() {
+const Equipment = () => {
   const [allItems, setAllItems] = useState<Item[]>([]);
   const [selectedItems, setSelectedItems] = useState<(Item | null)[]>(
     Array(EQUIPMENT_SLOTS.length).fill(null)
@@ -176,4 +176,6 @@ export default function Equipment() {
       />
     </div>
   );
-}
+};
+
+export default Equipment;
