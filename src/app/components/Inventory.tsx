@@ -63,11 +63,22 @@ export default function Inventory() {
   }
 
   return (
-    <div className="flex">
-      <div className="grid grid-cols-4 grid-rows-7 sm:gap-1 gap-0.5 place-items-center">
-        {selectedItems.map((chosen, idx) => (
-          <Slot key={idx} item={chosen} index={idx} onClick={openModal} />
-        ))}
+    <div className="flex flex-col gap-y-4 flex-2 items-center">
+      <h2 className="text-kharid text-sm font-bold border-b pb-1.5 border-white/5 w-full">
+        Inventory
+      </h2>
+      <div className="flex flex-0">
+        <div className="grid grid-cols-4 grid-rows-7 sm:gap-1 gap-0.5 place-items-center">
+          {selectedItems.map((chosen, idx) => (
+            <Slot
+              key={idx}
+              item={chosen}
+              index={idx}
+              label={`${idx + 1}`}
+              onClick={openModal}
+            />
+          ))}
+        </div>
       </div>
 
       <Search
