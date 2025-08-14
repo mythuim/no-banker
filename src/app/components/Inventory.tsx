@@ -64,7 +64,7 @@ const Inventory = () => {
 
   return (
     <div className="flex flex-col gap-y-4 flex-2 items-center">
-      <h2 className="text-kharid text-sm font-bold border-b pb-1.5 border-white/5 w-full">
+      <h2 className="text-kharid/75 text-sm font-bold border-b pb-1.5 border-white/5 w-full">
         Inventory
       </h2>
       <div className="flex flex-0">

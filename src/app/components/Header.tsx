@@ -7,7 +7,7 @@ const Header = () => {
       >
         <div className="flex">
           <a
-            href="#"
+            href="/"
             className="-m-1.5 p-1.5 flex items-center text-white/50 hover:text-white transition-colors font-bold"
           >
             NoBanker
@@ -17,6 +17,7 @@ const Header = () => {
         <div className="flex flex-1 justify-end">
           <a
             href="https://github.com/mythuim/no-banker"
+            target="_blank"
             className="text-xs font-semibold text-white/50 hover:text-white transition-colors"
           >
             GitHub <span aria-hidden="true">&rarr;</span>
