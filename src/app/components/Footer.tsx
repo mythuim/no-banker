@@ -55,7 +55,8 @@ const Footer = () => {
       <div className="border-t border-white/5 pt-4 mt-8 flex justify-between items-center">
         <a
           className="text-xs text-white/50 hover:text-white font-semibold transition-colors"
-          href="/"
+          href="https://wiseoldman.net/players/Mythuim"
+          target="_blank"
         >
           Created by Mythuim
         </a>
