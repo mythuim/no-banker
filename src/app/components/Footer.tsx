@@ -52,7 +52,7 @@ const socials = [
 const Footer = () => {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div className="border-t border-white/5 pt-4 mt-8 flex justify-between items-center">
+      <div className="border-t border-white/5 pt-4 mt-8 flex justify-between items-center pb-4">
         <a
           className="text-xs text-white/50 hover:text-white font-semibold transition-colors"
           href="https://wiseoldman.net/players/Mythuim"
