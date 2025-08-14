@@ -9,8 +9,8 @@ const font = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Bagify | Mythuim",
-  description: "UIM Inventory Manager",
+  title: "Bagify",
+  description: "UIM Inventory & Equipment Manager.",
 };
 
 export default function RootLayout({

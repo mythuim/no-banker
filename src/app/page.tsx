@@ -3,8 +3,8 @@ import Inventory from "./components/Inventory";
 
 export default function Home() {
   return (
-    <main className="p-4">
-      <div className="flex flex-row gap-4">
+    <main className="h-screen bg-ebony">
+      <div className="flex flex-row gap-4 p-4">
         {/* Inventory */}
         <Inventory />
         {/* Equipement */}

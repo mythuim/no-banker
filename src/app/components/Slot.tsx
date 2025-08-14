@@ -12,13 +12,25 @@ export default function Slot({ item, index, onClick, label }: SlotProps) {
     <div
       onClick={() => onClick(index)}
       className="
-        w-12 aspect-square border border-gray-400
+        w-12 aspect-square border
         flex items-center justify-center
-        rounded-md bg-gray-100
-        hover:border-blue-500 hover:bg-gray-200
-        transition-colors cursor-pointer select-none
-        overflow-hidden shadow-sm
+        rounded-md
+        transition-colors cursor-pointer select-none overflow-hidden shadow-sm
       "
+      style={{
+        backgroundColor: "var(--color-mocha)",
+        borderColor: "var(--color-cacao)",
+      }}
+      onMouseEnter={(e) => {
+        const target = e.currentTarget;
+        target.style.backgroundColor = "var(--color-sable)";
+        target.style.borderColor = "var(--color-kharid)";
+      }}
+      onMouseLeave={(e) => {
+        const target = e.currentTarget;
+        target.style.backgroundColor = "var(--color-mocha)";
+        target.style.borderColor = "var(--color-cacao)";
+      }}
     >
       {item ? (
         <img
@@ -27,7 +39,10 @@ export default function Slot({ item, index, onClick, label }: SlotProps) {
           className="max-w-[80%] max-h-[80%] object-contain pointer-events-none"
         />
       ) : label ? (
-        <span className="text-[10px] text-gray-500 text-center leading-tight">
+        <span
+          className="text-[10px] text-center leading-tight"
+          style={{ color: "var(--color-taupe)" }}
+        >
           {label}
         </span>
       ) : null}
