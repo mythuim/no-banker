@@ -55,10 +55,10 @@ const Footer = () => {
       <div className="border-t border-white/5 pt-4 mt-8 flex justify-between items-center pb-4">
         <a
           className="text-xs text-white/50 hover:text-white font-semibold transition-colors"
-          href="https://wiseoldman.net/players/Mythuim"
+          href="https://buymeacoffee.com/mythuim"
           target="_blank"
         >
-          Created by Mythuim
+          Buy Me a Coffee ☕
         </a>
         <div className="flex gap-x-3 items-center">
           {socials.map((item: any) => (
