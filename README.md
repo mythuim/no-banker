@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏦 NoBanker — Old School RuneScape Inventory & Equipment Manager
 
-## Getting Started
+Manage your **OSRS** gear, inventory and looting bag without ever touching a bank.  
+NoBanker is built for players who want to quickly save, share, and tweak their setups — anytime, anywhere, on any device.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ Features
+- 🛡 **Equipment Manager** — Customize your gear layout exactly how you want it.
+- 🎒 **Inventory Manager** — Organize and optimize your inventory with ease.
+- 👜 **Optional Looting Bag** — Add extra slots for your PvM or PvP setups.
+- 🔗 **Quick Save & Share** — Save your setup and share it via a simple URL.
+- 🖱 **Drag & Drop** — Move items into place with a simple drag and drop.
+- 📱 **Mobile-Friendly** — Works flawlessly on phones and tablets.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Demo
+🔗 **Live Demo:** [NoBanker](https://nobanker.online/)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 💡 Why NoBanker?
+Planning OSRS gear setups can be a chore.  
+NoBanker makes it **simple**, **fast**, and **accessible** — without the need of Third-party clients.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ☕ Support
+If you find this project helpful,  
+[Buy me a coffee](https://buymeacoffee.com/mythuim) ❤️
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📜 License
+This project is licensed under the MIT License.  
+See the [LICENSE](LICENSE) file for details.
