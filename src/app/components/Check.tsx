@@ -2,7 +2,7 @@ const Check = (props: any) => {
   const { onCheck } = props;
 
   return (
-    <div className="group relative inline-flex w-11 shrink-0 rounded-full bg-kharid/10 p-0.5 inset-ring inset-ring-gray-900/5 outline-offset-2 outline-kharid transition-colors duration-200 ease-in-out has-checked:bg-kharid has-focus-visible:outline-2 dark:bg-white/5 dark:inset-ring-white/10">
+    <div className="group relative inline-flex w-11 shrink-0 rounded-full bg-kharid/10 p-0.5 inset-ring inset-ring-gray-900/5 outline-offset-2 outline-kharid transition-colors duration-200 ease-in-out has-checked:bg-kharid/50 has-focus-visible:outline-2 dark:bg-white/5 dark:inset-ring-white/10">
       <span className="relative size-5 rounded-full bg-white shadow-xs ring-1 ring-gray-900/5 transition-transform duration-200 ease-in-out group-has-checked:translate-x-5">
         <span
           aria-hidden="true"
