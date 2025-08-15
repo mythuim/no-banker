@@ -62,6 +62,7 @@ function decodeIds(encoded: string) {
 
 export default function Home() {
   const [showLootingBag, setShowLootingBag] = useState(false);
+  const [setupName, setSetupName] = useState("");
   const [inventory, setInventory] = useState<(Item | null)[]>(
     Array(28).fill(null)
   );
@@ -93,7 +94,15 @@ export default function Home() {
   // Generate link
   const generateShareLink = () => {
     const encoded = encodeIds(equipment, inventory, lootingBag);
-    const shareUrl = `${window.location.origin}${window.location.pathname}?b=${encoded}`;
+    const params = new URLSearchParams();
+    params.set("b", encoded);
+    if (setupName.trim() !== "") {
+      params.set("name", setupName.trim());
+    }
+
+    const shareUrl = `${window.location.origin}${
+      window.location.pathname
+    }?${params.toString()}`;
     navigator.clipboard.writeText(shareUrl);
     alert("URL is on your clipboard!");
   };
@@ -102,6 +111,10 @@ export default function Home() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const code = params.get("b");
+    const name = params.get("name");
+
+    if (name) setSetupName(name);
+
     if (code && Object.keys(allItems).length > 0) {
       const {
         equipment: eqIds,
@@ -124,9 +137,23 @@ export default function Home() {
             selectedItems={equipment}
             setSelectedItems={setEquipment}
           />
+          <input
+            type="text"
+            value={setupName}
+            onChange={(e) => setSetupName(e.target.value)}
+            placeholder="Enter a name"
+            autoFocus
+            className="w-full rounded-md px-3 py-2 border text-xs text-white mt-4 focus:outline-none focus:ring-2 focus:ring-kharid"
+            style={{
+              backgroundColor: "var(--color-cacao)",
+              borderColor: "var(--color-sable)",
+              color: "var(--color-white)",
+            }}
+          />
           <button
+            disabled={!setupName.trim()}
             onClick={generateShareLink}
-            className="px-4 py-2 rounded-md text-xs mt-4 bg-kharid/50 text-white hover:bg-kharid transition-colors hover:cursor-pointer font-semibold"
+            className="px-4 py-2 rounded-md text-xs mt-2 bg-kharid/50 text-white hover:bg-kharid transition-colors hover:cursor-pointer font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Share
           </button>
