@@ -19,11 +19,9 @@ const EQUIPMENT_SLOTS = [
   "Ring",
 ];
 
-const Equipment = () => {
+const Equipment = (props: any) => {
+  const { selectedItems, setSelectedItems } = props;
   const [allItems, setAllItems] = useState<Item[]>([]);
-  const [selectedItems, setSelectedItems] = useState<(Item | null)[]>(
-    Array(EQUIPMENT_SLOTS.length).fill(null)
-  );
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(true);
@@ -56,7 +54,7 @@ const Equipment = () => {
 
   function selectItem(item: Item) {
     if (activeIndex === null) return;
-    setSelectedItems((prev) => {
+    setSelectedItems((prev: Item[] | null[]) => {
       const next = [...prev];
       next[activeIndex] = item;
       return next;
@@ -66,7 +64,7 @@ const Equipment = () => {
 
   function clearItem() {
     if (activeIndex === null) return;
-    setSelectedItems((prev) => {
+    setSelectedItems((prev: Item[] | null[]) => {
       const next = [...prev];
       next[activeIndex] = null;
       return next;

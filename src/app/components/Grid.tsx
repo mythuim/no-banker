@@ -6,14 +6,9 @@ import Search from "./Search";
 import { Item } from "../types";
 import Check from "./Check";
 
-const TOTAL_SLOTS = 28;
-
 const Grid = (props: any) => {
-  const { title, onCheck, startValue } = props;
+  const { title, onCheck, startValue, selectedItems, setSelectedItems } = props;
   const [allItems, setAllItems] = useState<Item[]>([]);
-  const [selectedItems, setSelectedItems] = useState<(Item | null)[]>(
-    Array(TOTAL_SLOTS).fill(null)
-  );
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(true);
@@ -46,7 +41,7 @@ const Grid = (props: any) => {
 
   function selectItem(item: Item) {
     if (activeIndex === null) return;
-    setSelectedItems((prev) => {
+    setSelectedItems((prev: Item[] | null[]) => {
       const next = [...prev];
       next[activeIndex] = item;
       return next;
@@ -56,7 +51,7 @@ const Grid = (props: any) => {
 
   function clearItem() {
     if (activeIndex === null) return;
-    setSelectedItems((prev) => {
+    setSelectedItems((prev: Item[] | null[]) => {
       const next = [...prev];
       next[activeIndex] = null;
       return next;
@@ -82,7 +77,7 @@ const Grid = (props: any) => {
       </div>
       <div className="flex flex-0">
         <div className="grid grid-cols-4 grid-rows-7 sm:gap-1 gap-0.5 place-items-center">
-          {selectedItems.map((chosen, idx) => (
+          {selectedItems.map((chosen: Item, idx: number) => (
             <Slot
               key={idx}
               item={chosen}
