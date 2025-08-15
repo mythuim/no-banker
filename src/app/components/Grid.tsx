@@ -62,8 +62,16 @@ const Grid = (props: any) => {
   return (
     <div className="flex flex-col gap-y-4 flex-2 items-center">
       <div className="flex items-center justify-between w-full border-b py-2 border-white/5">
-        {title !== "Looting Bag" && (
-          <h2 className="text-kharid/75 text-sm font-bold ">{title}</h2>
+        {title !== "Looting Bag" ? (
+          <h2 className="text-kharid/75 text-sm font-bold">{title}</h2>
+        ) : (
+          <>
+            <h2 className="text-kharid/75 text-sm font-bold">{title}</h2>
+            <img
+              alt="Skull"
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAgCAYAAAB6kdqOAAADoUlEQVR4XsWX7S+WYRjGXX9AH3yw9dH60JoPZk2zjM1YzcwsVmYmawpbmqQklSbRVIqJXpiiNCZjLORlJBKekJL0wvSh9Wec3cf5OG+Xuxeb+745t3Pjeey5f87rOI7zenx8bJWitd72UtTRcN7sbQZTNNR+lbu3+TJ1NubTk+psqig+poFtGZwiz0AVjXWV0khHMQ20XqHupovU/OAM3b+ZQTcKj1Jm6kEKC9njNpT3v54eukdT/RU00XuLxruvm1N6XneWasszqbwolQpzjzDU/uDdbkEpmp9oobnRxzT7qo6hMKW3PWXmlKCjR5VZfGxF5xIp+0QMpRwOp+DAXU5DKfrsaaeFyVaaH39Gc2ONNDtSz1CTfbf56AbbiqjraQHrqLIkja7lJ1FORiylJkZQ7IG9FBjg7xSUou9zL+nr7AtanO6ghak276QMqJnhh3x0ODZMCccGHdWUpVNpQTLlZR2itORIioveZx5dkD/ANl2Klj72m/3tfQ99meliqA9vmnhK7warWUuvO0v42ERHEPaF7HhKT4mihJgQU+C2gTAda2NSoicRuIhb19GlnAQWdmJcKEWEBjgDhKmgcWRoTAh6EiA5NogbUxId3S09bgo7KT6MosIDnQECACaCBgiLGzoyxK0L26oj5BF0BGHDadGRQc4ALX8a4obD2GXGZNCsIcP+oiE4DUfW11K4TkcibDjNMSA/X1+zAQKHicuQRVagtvo81hECEjoSp+3022HX+opWFobXAUlLOOr6QRbJXmuoOsV5hMQWp0kW2ZjSv4Gkdf3IToPTmmpO8/sCBKfZFLZiV/0PCBDW1/RGQEJDVhhbQCLq5fmBdQ+DmKEVK4TecJnV8puEQa0CGSBoJDVCUTIJeQNrWyGkoR9YXre7DRiU4uwBBCakw0AzeCiCD1OAvZHMCENA1t05ydpxEEbKm9QCBBiEoUxBHg5HQcQttbn8O+yOleEwjNTaggWQfizQECwOZwmMLFWXYFCKfq3MsI6wRrAyEIgIQ7gMMEhmgZFktmHvjcoLJJpCQiOdEYRybRUY/A1c5eJ0UKsTMnSEnzdq3BBdnA5K0c/lae+CNbY8rhxWiL/BuAu05OHE1vWDRYoswlaH/aEbrAiXpyNl7LTFEb52yPcxbHXce5A/cBUuYrrVrZ/gcCn6sTjK9yEsU3GXZA6+YQjUFgGhFGsI1w1sdeQO7jxYoLqOXNaPtf4Usg6xxTDesj7cDYjfnWGv06P557YAAAAASUVORK5CYII="
+            />
+          </>
         )}
         {onCheck && (
           <div className="flex items-center text-xs text-white/50 font-semibold gap-x-2">

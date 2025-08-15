@@ -158,7 +158,7 @@ export default function Home() {
             Share
           </button>
         </div>
-        <div className="flex-1">
+        <div className="flex-1 flex flex-col lg:flex-row gap-4">
           <Grid
             title="Inventory"
             onCheck={handleLootingBag}
