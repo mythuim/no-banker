@@ -1,4 +1,4 @@
-# 🏦 NoBanker — Old School RuneScape Inventory & Equipment Manager
+# NoBanker — Old School RuneScape Inventory & Equipment Manager
 
 Manage your **OSRS** gear, inventory and looting bag without ever touching a bank.  
 NoBanker is built for players who want to quickly save, share, and tweak their setups — anytime, anywhere, on any device.
