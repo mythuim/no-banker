@@ -126,9 +126,9 @@ export default function Home() {
           />
           <button
             onClick={generateShareLink}
-            className="px-4 py-2 rounded-md text-sm mt-4 bg-kharid/50 text-white hover:bg-kharid transition-colors hover:cursor-pointer font-semibold"
+            className="px-4 py-2 rounded-md text-xs mt-4 bg-kharid/50 text-white hover:bg-kharid transition-colors hover:cursor-pointer font-semibold"
           >
-            Save & share
+            Share
           </button>
         </div>
         <div className="flex-1">
