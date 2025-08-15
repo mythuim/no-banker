@@ -12,6 +12,25 @@ const Grid = (props: any) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(true);
+  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+
+  function handleDragStart(index: number) {
+    setDraggedIndex(index);
+  }
+
+  function handleDrop(toIndex: number) {
+    if (draggedIndex === null || draggedIndex === toIndex) return;
+
+    setSelectedItems((prev: (Item | null)[]) => {
+      const updated = [...prev];
+      const temp = updated[toIndex];
+      updated[toIndex] = updated[draggedIndex];
+      updated[draggedIndex] = temp;
+      return updated;
+    });
+
+    setDraggedIndex(null);
+  }
 
   useEffect(() => {
     fetch("/items.json")
@@ -68,8 +87,8 @@ const Grid = (props: any) => {
           <>
             <h2 className="text-kharid/75 text-sm font-bold">{title}</h2>
             <img
-              alt="Skull"
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAgCAYAAAB6kdqOAAADoUlEQVR4XsWX7S+WYRjGXX9AH3yw9dH60JoPZk2zjM1YzcwsVmYmawpbmqQklSbRVIqJXpiiNCZjLORlJBKekJL0wvSh9Wec3cf5OG+Xuxeb+745t3Pjeey5f87rOI7zenx8bJWitd72UtTRcN7sbQZTNNR+lbu3+TJ1NubTk+psqig+poFtGZwiz0AVjXWV0khHMQ20XqHupovU/OAM3b+ZQTcKj1Jm6kEKC9njNpT3v54eukdT/RU00XuLxruvm1N6XneWasszqbwolQpzjzDU/uDdbkEpmp9oobnRxzT7qo6hMKW3PWXmlKCjR5VZfGxF5xIp+0QMpRwOp+DAXU5DKfrsaaeFyVaaH39Gc2ONNDtSz1CTfbf56AbbiqjraQHrqLIkja7lJ1FORiylJkZQ7IG9FBjg7xSUou9zL+nr7AtanO6ghak276QMqJnhh3x0ODZMCccGHdWUpVNpQTLlZR2itORIioveZx5dkD/ANl2Klj72m/3tfQ99meliqA9vmnhK7warWUuvO0v42ERHEPaF7HhKT4mihJgQU+C2gTAda2NSoicRuIhb19GlnAQWdmJcKEWEBjgDhKmgcWRoTAh6EiA5NogbUxId3S09bgo7KT6MosIDnQECACaCBgiLGzoyxK0L26oj5BF0BGHDadGRQc4ALX8a4obD2GXGZNCsIcP+oiE4DUfW11K4TkcibDjNMSA/X1+zAQKHicuQRVagtvo81hECEjoSp+3022HX+opWFobXAUlLOOr6QRbJXmuoOsV5hMQWp0kW2ZjSv4Gkdf3IToPTmmpO8/sCBKfZFLZiV/0PCBDW1/RGQEJDVhhbQCLq5fmBdQ+DmKEVK4TecJnV8puEQa0CGSBoJDVCUTIJeQNrWyGkoR9YXre7DRiU4uwBBCakw0AzeCiCD1OAvZHMCENA1t05ydpxEEbKm9QCBBiEoUxBHg5HQcQttbn8O+yOleEwjNTaggWQfizQECwOZwmMLFWXYFCKfq3MsI6wRrAyEIgIQ7gMMEhmgZFktmHvjcoLJJpCQiOdEYRybRUY/A1c5eJ0UKsTMnSEnzdq3BBdnA5K0c/lae+CNbY8rhxWiL/BuAu05OHE1vWDRYoswlaH/aEbrAiXpyNl7LTFEb52yPcxbHXce5A/cBUuYrrVrZ/gcCn6sTjK9yEsU3GXZA6+YQjUFgGhFGsI1w1sdeQO7jxYoLqOXNaPtf4Usg6xxTDesj7cDYjfnWGv06P557YAAAAASUVORK5CYII="
+              alt="coins"
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAgCAYAAAB6kdqOAAADfUlEQVR4Xu2XT4hPURTHf285i9/it3j1evXqt5qFxTSb346NhRULC1JKEkkiahI1hZpIUxNpIoRoakQTmsjkTyY0YVBSUkpKUlJSUhbHfN51evfd937v9x5vsnHrlpk5957POed7zn0ajf+r1uVJdv+z5cm1o35md4dywWsNIB8mChqxk8F223GUb18cQKXlyZfZSH4+78jH25E8mQhkaqwY6NPdKAPT3b7y8uTbowWgZwPyYSaUuYuBTB4pcuDJ5/tRfObVVCjTx30ZG2oV2Fdennx9sAA03y/vb4Xy8HwgF0aKHJiMcubFJZPN0d1F9pWWF5cpLtnTtry7Ecq9M4Gc3t/6rYc8sZoMsecnA7k86svhnc36gNAD0f54HMmb66HMnPDl5HCrQKwmCLaWd2R7UzpLagayNeEKNg3lxVpjU96JQ74c2NqUlcv6qgB1mxeJQCmbaoJ/45CMka3lHTv6BIiO1JJtXFUaKDs37GgViEzhgBIo0MsroRzb05Klg/lABMB92Oxa3ywDlIVJQ5mO+T5nALTD+N3baZMBOiitDy/uRuwp8c1xP24CylYKCH0QPZe4JbCB7A7D/vVVA8iMSesjAeK+O6eMjgCvBETEpBgHWgIFsjtsfF8rLiM/00UAbl7t6sOUjSCARnec09ZPM6SW0QgH0QOHqffaFcaBnSEyQvq5mCA4w5xBU0MbmlZWzb2qI2w4d+5gqbKZZ4GZQcRogoM71iVzIw9INaWipYs0CC2bziICJbMlgVimbNRd25pBpg7IoAu0bU1f7AzRohF+RxAD/UmpFYg7VdjDW0oBscwFOFCdaJbIEFm0gSiRChsdET1tbQPx978Csh3Q2jhVIDKI6MmGph57yozuugGphpjudO/eTX8AlOcAKH3pmby0MKXsZq+lrhXIHZTuwHTt84AIgkbhnJa6BJDpNJ2sONBZ48LoHGEuqebU3u2yPKASz4e5XPWAfigJqY2/Ehe+gVQ7pFyB7LZXe3VkAzGruJPOLfmeGX3ou0SHcVBB7Xa3P0MRuT4L2Gc/vkxJbSDO07k9gFj2Z0eyAbI/Q5lNyejvvfU50kaoANRoaKrtlOsbR+Z4HN2yqJ2rMxU+GlMgnhc6k4FaCih/ZaNOQMzfXRBb+GzKOnu2NqBs5rIXefH/RtAKjhmoafBeQS3KKnboBrTIMGbV5fAXtsBoIGhomLwAAAAASUVORK5CYII="
             />
           </>
         )}
@@ -92,6 +111,8 @@ const Grid = (props: any) => {
               index={idx}
               label={`${startValue + idx}`}
               onClick={openModal}
+              onDragStart={handleDragStart}
+              onDrop={handleDrop}
             />
           ))}
         </div>

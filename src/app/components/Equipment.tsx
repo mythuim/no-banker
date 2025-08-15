@@ -25,6 +25,25 @@ const Equipment = (props: any) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(true);
+  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+
+  function handleDragStart(index: number) {
+    setDraggedIndex(index);
+  }
+
+  function handleDrop(toIndex: number) {
+    if (draggedIndex === null || draggedIndex === toIndex) return;
+
+    setSelectedItems((prev: (Item | null)[]) => {
+      const updated = [...prev];
+      const temp = updated[toIndex];
+      updated[toIndex] = updated[draggedIndex];
+      updated[draggedIndex] = temp;
+      return updated;
+    });
+
+    setDraggedIndex(null);
+  }
 
   useEffect(() => {
     fetch("/items.json")
@@ -90,6 +109,8 @@ const Equipment = (props: any) => {
               index={0}
               onClick={openModal}
               label={EQUIPMENT_SLOTS[0]}
+              onDragStart={handleDragStart}
+              onDrop={handleDrop}
             />
           </div>
 
@@ -99,18 +120,24 @@ const Equipment = (props: any) => {
             index={1}
             onClick={openModal}
             label={EQUIPMENT_SLOTS[1]}
+            onDragStart={handleDragStart}
+            onDrop={handleDrop}
           />
           <Slot
             item={selectedItems[2]}
             index={2}
             onClick={openModal}
             label={EQUIPMENT_SLOTS[2]}
+            onDragStart={handleDragStart}
+            onDrop={handleDrop}
           />
           <Slot
             item={selectedItems[3]}
             index={3}
             onClick={openModal}
             label={EQUIPMENT_SLOTS[3]}
+            onDragStart={handleDragStart}
+            onDrop={handleDrop}
           />
 
           {/* Row 3 */}
@@ -119,18 +146,24 @@ const Equipment = (props: any) => {
             index={4}
             onClick={openModal}
             label={EQUIPMENT_SLOTS[4]}
+            onDragStart={handleDragStart}
+            onDrop={handleDrop}
           />
           <Slot
             item={selectedItems[5]}
             index={5}
             onClick={openModal}
             label={EQUIPMENT_SLOTS[5]}
+            onDragStart={handleDragStart}
+            onDrop={handleDrop}
           />
           <Slot
             item={selectedItems[6]}
             index={6}
             onClick={openModal}
             label={EQUIPMENT_SLOTS[6]}
+            onDragStart={handleDragStart}
+            onDrop={handleDrop}
           />
 
           {/* Row 4 */}
@@ -140,6 +173,8 @@ const Equipment = (props: any) => {
               index={7}
               onClick={openModal}
               label={EQUIPMENT_SLOTS[7]}
+              onDragStart={handleDragStart}
+              onDrop={handleDrop}
             />
           </div>
 
@@ -149,18 +184,24 @@ const Equipment = (props: any) => {
             index={8}
             onClick={openModal}
             label={EQUIPMENT_SLOTS[8]}
+            onDragStart={handleDragStart}
+            onDrop={handleDrop}
           />
           <Slot
             item={selectedItems[9]}
             index={9}
             onClick={openModal}
             label={EQUIPMENT_SLOTS[9]}
+            onDragStart={handleDragStart}
+            onDrop={handleDrop}
           />
           <Slot
             item={selectedItems[10]}
             index={10}
             onClick={openModal}
             label={EQUIPMENT_SLOTS[10]}
+            onDragStart={handleDragStart}
+            onDrop={handleDrop}
           />
         </div>
       </div>
