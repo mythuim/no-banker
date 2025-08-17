@@ -9,6 +9,7 @@ NoBanker is built for players who want to quickly save, share, and tweak their s
 - 👜 **Optional Looting Bag** — Add extra slots for your PvM or PvP setups.
 - 🔗 **Quick Save & Share** — Save your setup and share it via a simple URL.
 - 🖱 **Drag & Drop** — Move items into place with a simple drag and drop.
+- 🚀 **Local Storage** — Auto-save and clear your setup to the LocalStorage.
 - 📱 **Mobile-Friendly** — Works flawlessly on phones and tablets.
 
 ## 🚀 Demo
