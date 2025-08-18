@@ -193,7 +193,7 @@ export default function Home() {
               onChange={(e) => setSetupName(e.target.value)}
               placeholder="Enter a name"
               autoFocus
-              className="rounded-md px-3 py-2 border text-xs text-white mt-4 focus:outline-none focus:ring-2 focus:ring-kharid text-center"
+              className="rounded-md px-3 py-2 border text-[10px] text-center leading-tight font-bold mt-4 focus:outline-none focus:ring-2 focus:ring-kharid text-center"
               style={{
                 backgroundColor: "var(--color-cacao)",
                 borderColor: "var(--color-sable)",
