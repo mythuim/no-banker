@@ -9,9 +9,9 @@ const font = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "NoBanker — Inventory & Equipment Manager",
+  title: "NoBanker — Old School Runescape Inventory & Equipment Manager",
   description:
-    "Easily manage your Old School Runescape inventory and equipment with NoBanker.",
+    "NoBanker is built for players who want to quickly save, share, and tweak their setups — anytime, anywhere, on any device.",
 };
 
 export default function RootLayout({
