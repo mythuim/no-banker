@@ -7,7 +7,6 @@ import { toUrlSafeBase64, fromUrlSafeBase64 } from "./utils";
 
 import Equipment from "./components/Equipment";
 import Footer from "./components/Footer";
-import Header from "./components/Header";
 import Grid from "./components/Grid";
 
 // Id's
@@ -17,14 +16,16 @@ function itemsToIds(items: (Item | null)[]): number[] {
 
 // Encode grids to string
 function encodeIds(
-  equipment: (Item | null)[],
+  deathPile: (Item | null)[],
   inventory: (Item | null)[],
-  lootingBag: (Item | null)[]
+  lootingBag: (Item | null)[],
+  equipment: (Item | null)[]
 ) {
   const ids = [
-    ...itemsToIds(equipment),
+    ...itemsToIds(deathPile),
     ...itemsToIds(inventory),
     ...itemsToIds(lootingBag),
+    ...itemsToIds(equipment),
   ];
 
   // 2 bytes per ID
@@ -55,20 +56,40 @@ function decodeIds(encoded: string) {
   return {
     equipment: ids.slice(0, 11),
     inventory: ids.slice(11, 39),
-    lootingBag: ids.slice(39),
+    lootingBag: ids.slice(39, 67),
+    deathPile: ids.slice(67),
   };
 }
 
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(" ");
+}
+
 export default function Home() {
-  const [showLootingBag, setShowLootingBag] = useState(false);
   const [setupName, setSetupName] = useState("");
   const [inventory, setInventory] = useState<(Item | null)[] | null>(null);
   const [lootingBag, setLootingBag] = useState<(Item | null)[] | null>(null);
   const [equipment, setEquipment] = useState<(Item | null)[] | null>(null);
+  const [deathPile, setDeathPile] = useState<(Item | null)[] | null>(null);
+  const [activeTab, setActiveTab] = useState("inventory");
 
-  const handleLootingBag = () => {
-    setShowLootingBag(!showLootingBag);
-  };
+  const tabs = [
+    {
+      name: "Inventory",
+      id: "inventory",
+      img: "https://oldschool.runescape.wiki/images/Inventory.png?d4795",
+    },
+    {
+      name: "Looting Bag",
+      id: "lootingBag",
+      img: "https://oldschool.runescape.wiki/images/Looting_bag_%28open%29.png?6dc61",
+    },
+    {
+      name: "Death Pile",
+      id: "deathPile",
+      img: "https://oldschool.runescape.wiki/images/Skull_%28status%29_icon.png?fa6d8",
+    },
+  ];
 
   const [allItems, setAllItems] = useState<Record<number, Item>>({});
   useEffect(() => {
@@ -96,11 +117,13 @@ export default function Home() {
         equipment: eqIds,
         inventory: invIds,
         lootingBag: bagIds,
+        deathPile: dpIds,
       } = decodeIds(code);
 
       setEquipment(eqIds.map((id) => (id ? allItems[id] || null : null)));
       setInventory(invIds.map((id) => (id ? allItems[id] || null : null)));
       setLootingBag(bagIds.map((id) => (id ? allItems[id] || null : null)));
+      setDeathPile(dpIds.map((id) => (id ? allItems[id] || null : null)));
       if (name) setSetupName(name);
     } else {
       const saved = localStorage.getItem("setup");
@@ -122,6 +145,11 @@ export default function Home() {
               id ? allItems[id] || null : null
             )
           );
+          setDeathPile(
+            data.deathPile.map((id: number) =>
+              id ? allItems[id] || null : null
+            )
+          );
           if (data.setupName) setSetupName(data.setupName);
         } catch {
           console.warn("Corrupt localStorage data, cleared.");
@@ -129,31 +157,34 @@ export default function Home() {
           setEquipment(Array(11).fill(null));
           setInventory(Array(28).fill(null));
           setLootingBag(Array(28).fill(null));
+          setDeathPile(Array(28).fill(null));
         }
       } else {
         setEquipment(Array(11).fill(null));
         setInventory(Array(28).fill(null));
         setLootingBag(Array(28).fill(null));
+        setDeathPile(Array(28).fill(null));
       }
     }
   }, [allItems]);
 
   // Save to localStorage
   useEffect(() => {
-    if (!equipment || !inventory || !lootingBag) return;
+    if (!equipment || !inventory || !lootingBag || !deathPile) return;
     const data = {
       equipment: itemsToIds(equipment),
       inventory: itemsToIds(inventory),
       lootingBag: itemsToIds(lootingBag),
+      deathPile: itemsToIds(deathPile),
       setupName,
     };
     localStorage.setItem("setup", JSON.stringify(data));
-  }, [equipment, inventory, lootingBag, setupName]);
+  }, [equipment, inventory, lootingBag, deathPile, setupName]);
 
   // Generate link
   const generateShareLink = () => {
     if (!equipment || !inventory || !lootingBag) return;
-    const encoded = encodeIds(equipment, inventory, lootingBag);
+    const encoded = encodeIds(equipment, inventory, lootingBag, deathPile);
     const params = new URLSearchParams();
     params.set("b", encoded);
     if (setupName.trim() !== "") {
@@ -172,12 +203,12 @@ export default function Home() {
     setEquipment(Array(11).fill(null));
     setInventory(Array(28).fill(null));
     setLootingBag(Array(28).fill(null));
+    setDeathPile(Array(28).fill(null));
     setSetupName("");
   };
 
   return (
     <main className="min-h-screen bg-ebony">
-      <Header />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex gap-x-4 justify-center">
         <div className="flex flex-col">
           {equipment && (
@@ -186,6 +217,7 @@ export default function Home() {
               setSelectedItems={setEquipment}
             />
           )}
+
           <div className="flex flex-col w-38">
             <input
               type="text"
@@ -193,7 +225,7 @@ export default function Home() {
               onChange={(e) => setSetupName(e.target.value)}
               placeholder="Enter a name"
               autoFocus
-              className="rounded-md px-3 py-2 border text-[10px] text-center leading-tight font-bold mt-4 focus:outline-none focus:ring-2 focus:ring-kharid text-center"
+              className="rounded-md px-3 py-2 border text-[10px] leading-tight font-bold mt-4 focus:outline-none focus:ring-2 focus:ring-kharid text-center"
               style={{
                 backgroundColor: "var(--color-cacao)",
                 borderColor: "var(--color-sable)",
@@ -201,6 +233,7 @@ export default function Home() {
               }}
             />
             <div className="flex items-center gap-x-2">
+              {/* Share */}
               <button
                 disabled={!setupName.trim()}
                 onClick={generateShareLink}
@@ -208,6 +241,7 @@ export default function Home() {
               >
                 Share
               </button>
+              {/* Clear */}
               <button
                 onClick={clearSetup}
                 className="flex flex-0 px-4 py-2 rounded-md text-xs mt-2 bg-red-500/50 text-white hover:bg-red-600 transition-colors hover:cursor-pointer font-semibold"
@@ -217,26 +251,54 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="flex-1 flex flex-col lg:flex-row gap-4">
-          {inventory && (
-            <Grid
-              title="Inventory"
-              onCheck={handleLootingBag}
-              startValue={1}
-              selectedItems={inventory}
-              setSelectedItems={setInventory}
-            />
-          )}
-          {showLootingBag && lootingBag && (
-            <Grid
-              title="Looting Bag"
-              startValue={29}
-              selectedItems={lootingBag}
-              setSelectedItems={setLootingBag}
-            />
-          )}
+
+        <div className="flex-1 flex flex-col gap-4 py-4">
+          <div className="border-b border-white/5">
+            <nav className=" flex sm:space-x-6 space-x-2">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={classNames(
+                    activeTab === tab.id
+                      ? "border-khard text-kharid"
+                      : "border-transparent text-kharid/50 hover:border-kharid hover:text-kharid transition-colors",
+                    "border-b-2 px-1 pb-2 sm:text-sm text-xs font-semibold whitespace-nowrap hover:cursor-pointer flex items-center gap-x-2"
+                  )}
+                >
+                  <img alt={tab.name} className="w-6 h-6" src={tab.img} />
+                  <p className="hidden sm:block">{tab.name}</p>
+                </button>
+              ))}
+            </nav>
+          </div>
+
+          <div className="flex-1">
+            {activeTab === "inventory" && inventory && (
+              <Grid
+                startValue={1}
+                selectedItems={inventory}
+                setSelectedItems={setInventory}
+              />
+            )}
+            {activeTab === "lootingBag" && lootingBag && (
+              <Grid
+                startValue={29}
+                selectedItems={lootingBag}
+                setSelectedItems={setLootingBag}
+              />
+            )}
+            {activeTab === "deathPile" && deathPile && (
+              <Grid
+                startValue={57}
+                selectedItems={deathPile}
+                setSelectedItems={setDeathPile}
+              />
+            )}
+          </div>
         </div>
       </div>
+
       <Footer />
     </main>
   );

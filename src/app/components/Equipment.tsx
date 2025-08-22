@@ -93,13 +93,15 @@ const Equipment = (props: any) => {
 
   return (
     <div className="flex flex-col gap-y-4 flex-none items-center">
-      <div className="flex items-center justify-between w-full border-b py-2 border-white/5">
-        <h2 className="text-kharid/75 text-sm font-bold ">Equipment</h2>
+      <div className="flex items-center w-full border-b pt-4 pb-2 gap-x-2 border-white/5">
         <img
-          alt="Placeholder"
-          className="opacity-0"
-          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAgCAYAAAB6kdqOAAACrklEQVR4Xu2V70tTYRTH97y8L/ZiLwbjwmCMMUREhiijMdmYNOZQmaIuWMawUrL8ESwzy8woQ6MMYWCaaTCiKOhP/MY5t2f3uc9+NNPtTfvCl3HHPWef53vO3XW5uurq/5FAfTeTfm8rNS1JwPQaDocDXvSFfE1+QCBgeth6beOaliQQ7fWgN+hGyDSqjg8EuXEkEGDrVZZqD3IJKCveSNjDQBJKtQTSKy0JTlE9BLkWqiUwgcKwgbFBwwFEpmvpkWvhBg0Fj1MFkYdQwfxeF8Kmq0EPhwSKSQOTUQtIQsUjXgcceTrdX6ehwECv6QCiHmq6/QEX++9jZwncSxuYjTmBJJQ0XSeGQmw7fhtGJkKferrxHheGQjaQTlBHVko0NgmSjvqQGrSspkVAtORkglHHJWH0mkzEQKrvgkBrY27cGTGqMNm4iVzC5E81JT6xAqTuDJnuoxoy9ZHr0OK4VAmUcm4GU0eymI9xYx1K3xMyfZcZ7nHUL4+6+aG5QDqq/jz+1ZMI3C/EOSkJJceg7ogKGO331/T4h3Rs1RYKTKf8PAJ9N3Qg+YjradT2vJQsoEZQEozSUWGuEECXnZB88uQ+SRD1D1BPpw0SNckUZmZwPZlEPBqt+95qO9DxwQE+7O7izfMtbJVKWJqfx2wuh8lsFmPpNMMNRSIIBe2XsN7lCiXw9eQYp4eHKO/v4e3LHTx5uIbFYhG3bxYwl8/jxtQUpsfHMTGa6QQQSeD751N8KZdx9P4dJ/V4dQWPlh9gZWGBE7t7a64TC00S2F+a4JH9PD9H5eMRJ/X62VO82tzE9vo6p5OIxTqXDgFRKnsvthmERkbJkGlktEe0Qz6P/JdvuwR+VSqc0I+zMx7ft08nDEhwNL6djY1OjUzKfj81cgdhLMkfbGa9pquuOqnfUARo2dF/fxcAAAAASUVORK5CYII="
+          alt="Goblin Mail"
+          className="w-6.5 h-6.5"
+          src="https://oldschool.runescape.wiki/images/Equipment_Stats.png?9f3c9"
         />
+        <h2 className="sm:text-sm text-xs font-semibold whitespace-nowrap text-kharid">
+          Equipment
+        </h2>
       </div>
       <div className="flex flex-0">
         <div className="grid grid-cols-3 sm:gap-1 gap-0.5 place-items-center">
