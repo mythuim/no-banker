@@ -66,6 +66,7 @@ function classNames(...classes: string[]) {
 }
 
 export default function Home() {
+  const [loaded, setLoaded] = useState(false);
   const [setupName, setSetupName] = useState("");
   const [inventory, setInventory] = useState<(Item | null)[]>(
     Array(28).fill(null)
@@ -174,11 +175,20 @@ export default function Home() {
         setDeathPile(Array(28).fill(null));
       }
     }
+    setLoaded(true);
   }, [allItems]);
 
   // Save to localStorage
   useEffect(() => {
-    if (!equipment || !inventory || !lootingBag || !deathPile) return;
+    if (Object.keys(allItems).length === 0) return; // wacht tot items.json geladen is
+    if (
+      !equipment.length ||
+      !inventory.length ||
+      !lootingBag.length ||
+      !deathPile.length
+    )
+      return;
+
     const data = {
       equipment: itemsToIds(equipment),
       inventory: itemsToIds(inventory),
@@ -187,7 +197,7 @@ export default function Home() {
       setupName,
     };
     localStorage.setItem("setup", JSON.stringify(data));
-  }, [equipment, inventory, lootingBag, deathPile, setupName]);
+  }, [equipment, inventory, lootingBag, deathPile, setupName, allItems]);
 
   // Generate link
   const generateShareLink = () => {
