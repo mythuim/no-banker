@@ -67,10 +67,18 @@ function classNames(...classes: string[]) {
 
 export default function Home() {
   const [setupName, setSetupName] = useState("");
-  const [inventory, setInventory] = useState<(Item | null)[] | null>(null);
-  const [lootingBag, setLootingBag] = useState<(Item | null)[] | null>(null);
-  const [equipment, setEquipment] = useState<(Item | null)[] | null>(null);
-  const [deathPile, setDeathPile] = useState<(Item | null)[] | null>(null);
+  const [inventory, setInventory] = useState<(Item | null)[]>(
+    Array(28).fill(null)
+  );
+  const [lootingBag, setLootingBag] = useState<(Item | null)[]>(
+    Array(28).fill(null)
+  );
+  const [equipment, setEquipment] = useState<(Item | null)[]>(
+    Array(11).fill(null)
+  );
+  const [deathPile, setDeathPile] = useState<(Item | null)[]>(
+    Array(28).fill(null)
+  );
   const [activeTab, setActiveTab] = useState("inventory");
 
   const tabs = [
